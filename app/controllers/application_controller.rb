@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
   end
 end
   def after_sign_in_path_for(res)
-  	session[:previous_url] || tasks_path
+  	tasks_path
   end
 end
