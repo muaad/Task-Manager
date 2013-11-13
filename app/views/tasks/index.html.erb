@@ -1,0 +1,58 @@
+<div class = "row">
+  <div class = "span10">
+    <h1>Listing tasks</h1>
+  </div>
+  <div class = "span1">
+    <span class="glyphicon glyphicon-search"></span>
+  </div>
+  <div class = "span1">
+    <button style = "border:none; background-color:white;" data-toggle="modal" data-target="#myModal">
+      <img src="assets/new.png" alt="New Task">
+    </button>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Create a New Task</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'form' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+  </div>
+</div>
+<hr>
+
+<% @tasks.each do |task| %>
+  <div class="panel panel-primary">
+    <div class = "panel-heading">
+      <h3 class = "panel-title">
+        <%= task.name %>
+      </h3>
+    </div>
+    <div class = "panel-body well">
+      <div class = "tasks">
+        <p>
+        From: <%= task.start %><br>
+        To: <%= task.end %><br>
+        Where: <%= task.venue %><br>
+        Duration: <%= distance_of_time_in_words(task.start, task.end) %><br>
+        Reminder in: <%= distance_of_time_in_words(Time.now, task.start) %></p>
+        <%= link_to time_ago_in_words(task.created_at) + " ago", task%>
+        <span class = "admin"><%= link_to image_tag("/assets/edit.png"), edit_task_path(task), rel: "tooltip", title: "Edit" %>
+        <%= link_to image_tag("/assets/delete.png"), task, method: :delete, data: { confirm: 'Are you sure?' }, rel: "tooltip", title: "Delete" %></span>
+      </div>
+    </div>
+</div>
+<% end %>
+
+<br>
+
+

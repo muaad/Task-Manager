@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tasks</title>
+	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<div class = "navbar navbar-fixed-top navbar-inverse"  role="navigation">
+		<div class = "navbar-inner">
+			<div class = "container">
+				<a href="/" class = "brand"><img src="assets/icon.png">Task Manager</a>
+				<% if user_signed_in? %>
+				<ul class = "navbar-text nav pull-right">
+					<li class = "navbar-text nav pull-right">Hey, <%= current_user.first_name %></li>
+					<li><%= link_to "Edit Account", edit_user_registration_path %></li>
+					<li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete%></p></li>
+				</ul>
+				
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+	<div class = "container">
+		<div class="notice alert alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			<% if notice != nil %>
+				<p><%= notice %></p>
+				<p class="alertt"><%= alert %></p>
+			<% end %>
+		</div>
+		<%= yield %>
+	</div>
+	<div class = "navbar"><center>Copyright 2013</center></div>
+</body>
+</html>
