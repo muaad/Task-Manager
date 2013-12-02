@@ -25,14 +25,13 @@
 	</div>
 
 	<div class = "container">
-		<!--<div class="notice alert alert-dismissable">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			<% if notice != nil %>
-				<p><%= notice %></p>
-				<p class="alertt"><%= alert %></p>
-			<% end %>
-		</div> -->
-		<%= yield %>
+		<% if flash[:notice] %>
+			<div class="alert alert-success">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<%= flash[:notice] %>
+			</div>
+		<% end %>
+	<%= yield %>
 	</div>
 	<div class = "navbar"><center>Copyright 2013</center></div>
 </body>
